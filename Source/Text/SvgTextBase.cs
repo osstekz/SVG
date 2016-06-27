@@ -912,10 +912,12 @@ namespace Svg
             }
         }
 
-        /// <summary>Empty text elements are not legal - only write this element if it has children.</summary>
-        public override bool ShouldWriteElement()
-        {
-            return (this.HasChildren() || this.Nodes.Count > 0);
-        }
+		  //OSS:Enh:Converted ShouldWriteElement to a Property for better performance and accessibility
+		  /// <summary>Empty text elements are not legal - only write this element if it has children.</summary>
+		  public override bool ShouldWriteElement {
+			  get {
+				  return (base._ShouldWriteElement && (this.HasChildren() || this.Nodes.Count > 0));
+				  }
+			  }
     }
 }

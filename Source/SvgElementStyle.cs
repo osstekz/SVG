@@ -20,7 +20,8 @@ namespace Svg
         /// <value>
         /// 	<c>true</c> if the path is dirty; otherwise, <c>false</c>.
         /// </value>
-        protected virtual bool IsPathDirty
+		  //OSS:Enh:Chnaged Protected to Public
+		  public virtual bool IsPathDirty
         {
             get { return this._dirty; }
             set { this._dirty = value; }

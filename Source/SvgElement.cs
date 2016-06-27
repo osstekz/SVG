@@ -101,7 +101,8 @@ namespace Svg
         /// <summary>
         /// Gets the name of the element.
         /// </summary>
-        protected internal string ElementName
+		  /// OSS:Enh:Treeview needs access to ElementName
+		public string ElementName 
         {
             get
             {
@@ -520,12 +521,16 @@ namespace Svg
             this.Render(renderer);
         }
 
-        /// <summary>Derrived classes may decide that the element should not be written. For example, the text element shouldn't be written if it's empty.</summary>
-        public virtual bool ShouldWriteElement()
-        {
-            //Write any element who has a name.
-            return (this.ElementName != String.Empty);
-        }
+		  //OSS:Enh:Converted ShouldWriteElement to a Property for better performance and accessibility
+		  /// <summary>Derrived classes may decide that the element should not be written. For example, the text element shouldn't be written if it's empty.</summary>
+		  protected bool _ShouldWriteElement = true;
+		  public virtual bool ShouldWriteElement {
+			  get {
+				  //Write any element who has a name.
+				  return (_ShouldWriteElement && (this.ElementName != String.Empty));
+				  }
+			  set { _ShouldWriteElement = value; }
+			  }
 
         protected virtual void WriteStartElement(XmlTextWriter writer)
         {
@@ -664,7 +669,8 @@ namespace Svg
 
         public virtual void Write(XmlTextWriter writer)
         {
-            if (ShouldWriteElement())
+			//OSS:Enh:Converted ShouldWriteElement to a Property for better performance and accessibility
+			if (ShouldWriteElement)
             {
                 this.WriteStartElement(writer);
                 this.WriteChildren(writer);

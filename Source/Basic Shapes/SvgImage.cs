@@ -74,9 +74,9 @@ namespace Svg
 		}
 
 		[SvgAttribute("href", SvgAttributeAttribute.XLinkNamespace)]
-		public virtual string Href
+		public virtual Uri Href
 		{
-			get { return this.Attributes.GetAttribute<string>("href"); }
+			get { return this.Attributes.GetAttribute<Uri>("href"); }
 			set { this.Attributes["href"] = value; }
 		}
 
@@ -237,9 +237,9 @@ namespace Svg
             return this.GetImage(this.Href);
         }
 
-        public object GetImage(string uriString)
+        public object GetImage(Uri imguri)
         {
-            string safeUriString;
+		  string safeUriString, uriString = imguri.OriginalString;
             if (uriString.Length > 65519)
             {
                 safeUriString = uriString.Substring(0,

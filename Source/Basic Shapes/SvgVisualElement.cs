@@ -11,7 +11,10 @@ namespace Svg
     /// </summary>
     public abstract partial class SvgVisualElement : SvgElement, ISvgBoundable, ISvgStylable, ISvgClipable
     {
-        private bool? _requiresSmoothRendering;
+		 //OSS:Enh:Save the elements current transformation matrix (CTM)
+		 public Matrix matrixTrackCTM;
+		 
+		 private bool? _requiresSmoothRendering;
         private Region _previousClip;
 
         /// <summary>
