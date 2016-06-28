@@ -22,8 +22,10 @@ namespace Svg
     /// </summary>
     public class SvgDocument : SvgFragment, ITypeDescriptorContext
     {
-        public static readonly int PointsPerInch = 96;
-        private SvgElementIdManager _idManager;
+		 //OSS:Hack:Ensure all units are calculated using the same standard. We currently will standardize on 
+		 // Inkscape's default INKSCAPE_DPI_DEFAULT_RESOLUTION = 90;
+		 public static readonly int PointsPerInch = 90;
+		 private SvgElementIdManager _idManager;
 
         private Dictionary<string, IEnumerable<SvgFontFace>> _fontDefns = null;
         internal Dictionary<string, IEnumerable<SvgFontFace>> FontDefns()

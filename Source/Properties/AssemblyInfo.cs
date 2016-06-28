@@ -6,12 +6,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Svg")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("ossSvg")]
+[assembly: AssemblyDescription("Svg rendering engine")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Microsoft")]
+[assembly: AssemblyCompany("OmniSoft")]
 [assembly: AssemblyProduct("Svg")]
-[assembly: AssemblyCopyright("Copyright © Microsoft 2006")]
+[assembly: AssemblyCopyright("Copyright ©2014 Omni Software Systems, Inc")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

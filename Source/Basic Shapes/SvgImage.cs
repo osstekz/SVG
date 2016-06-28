@@ -223,6 +223,8 @@ namespace Svg
                         renderer.PopBoundable();
                     }
 
+						  //OSS:Enh:Save the current matrix
+						  matrixTrackCTM = renderer.Transform;
 
                     this.ResetClip(renderer);
                     this.PopTransforms(renderer);

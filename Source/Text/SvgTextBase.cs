@@ -244,7 +244,10 @@ namespace Svg
                 this.PushTransforms(renderer);
                 this.SetClip(renderer);
 
-                // If this element needs smoothing enabled turn anti-aliasing on
+					 //OSS:Enh:Save the current matrix
+					 matrixTrackCTM = renderer.Transform;
+
+					 // If this element needs smoothing enabled turn anti-aliasing on
                 if (this.RequiresSmoothRendering)
                 {
                     renderer.SmoothingMode = SmoothingMode.AntiAlias;
@@ -913,11 +916,12 @@ namespace Svg
         }
 
 		  //OSS:Enh:Converted ShouldWriteElement to a Property for better performance and accessibility
+		  //OSS:Fix:This is Not Valid, TSpan with Text and Text with Content will be ignored???
 		  /// <summary>Empty text elements are not legal - only write this element if it has children.</summary>
-		  public override bool ShouldWriteElement {
-			  get {
-				  return (base._ShouldWriteElement && (this.HasChildren() || this.Nodes.Count > 0));
-				  }
-			  }
+		  //public override bool ShouldWriteElement {
+		  //   get {
+		  //      return (base._ShouldWriteElement && (this.HasChildren() || this.Nodes.Count > 0));
+		  //      }
+		  //   }
     }
 }

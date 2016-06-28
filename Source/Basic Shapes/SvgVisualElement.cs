@@ -159,6 +159,8 @@ namespace Svg
                     }
                 }
 
+					 //OSS:Enh:Save the current matrix
+					 matrixTrackCTM = renderer.Transform;
 
                 if (renderNormal)
                 {
