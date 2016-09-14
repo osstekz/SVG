@@ -47,10 +47,14 @@ namespace Svg
             set { this.Attributes["baseline-shift"] = value; this.IsPathDirty = true; }
         }
 
-        public override XmlSpaceHandling SpaceHandling
+		  //OSS:Enh:Moved from SvgElement:Only used by TextBase
+		  public XmlSpaceHandling SpaceHandling
         {
-            get { return base.SpaceHandling; }
-            set { base.SpaceHandling = value; this.IsPathDirty = true; }
+			  //get { return base.SpaceHandling; }
+			  // set { base.SpaceHandling = value; this.IsPathDirty = true; }
+			  get { return (this.Attributes["space"] == null) ? XmlSpaceHandling.@default : (XmlSpaceHandling)this.Attributes["space"]; }
+			  set { this.Attributes["space"] = value; }
+
         }
 
         /// <summary>
@@ -915,13 +919,12 @@ namespace Svg
             }
         }
 
-		  //OSS:Enh:Converted ShouldWriteElement to a Property for better performance and accessibility
-		  //OSS:Fix:This is Not Valid, TSpan with Text and Text with Content will be ignored???
+		 //OSS:Enh:Converted ShouldWriteElement to a Property for better performance and accessibility
 		  /// <summary>Empty text elements are not legal - only write this element if it has children.</summary>
-		  //public override bool ShouldWriteElement {
-		  //   get {
-		  //      return (base._ShouldWriteElement && (this.HasChildren() || this.Nodes.Count > 0));
-		  //      }
-		  //   }
+		  public override bool ShouldWriteElement {
+			  get {
+				  return (base._ShouldWriteElement && (this.HasChildren() || this.Nodes.Count > 0));
+				  }
+			  }
     }
 }

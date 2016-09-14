@@ -65,11 +65,13 @@ namespace Svg
         }
         public void FlushStyles()
         {
-            foreach (var s in _styles)
-            {
-                SvgElementFactory.SetPropertyValue(this, s.Key, s.Value.Last().Value, this.OwnerDocument);
-            }
-            _styles = null;
+			  //OSS:Fix:Check _styles != null
+			  if (_styles != null) {
+				  foreach (var s in _styles) {
+					  SvgElementFactory.SetPropertyValue(this, s.Key, s.Value.Last().Value, this.OwnerDocument);
+					  }
+				  _styles = null;
+				  }
         }
 
 
@@ -377,16 +379,17 @@ namespace Svg
             }
         }
 
-        /// <summary>
+		 //OSS:Enh:Moved:Only used by TextBase
+		 /// <summary>
         /// Gets or sets the text anchor.
         /// </summary>
         /// <value>The text anchor.</value>
-        [SvgAttribute("space", SvgAttributeAttribute.XmlNamespace)]
-        public virtual XmlSpaceHandling SpaceHandling
-        {
-            get { return (this.Attributes["space"] == null) ? XmlSpaceHandling.@default : (XmlSpaceHandling)this.Attributes["space"]; }
-            set { this.Attributes["space"] = value; }
-        }
+		  //[SvgAttribute("space", SvgAttributeAttribute.XmlNamespace)]
+		  //public virtual XmlSpaceHandling SpaceHandling
+		  //{
+		  //   get { return (this.Attributes["space"] == null) ? XmlSpaceHandling.@default : (XmlSpaceHandling)this.Attributes["space"]; }
+		  //   set { this.Attributes["space"] = value; }
+		  //   }
 
         public void SetAndForceUniqueID(string value, bool autoForceUniqueID = true, Action<SvgElement, string, string> logElementOldIDNewID = null)
         {
