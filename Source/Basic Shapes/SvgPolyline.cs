@@ -118,5 +118,16 @@ namespace Svg
 
             return result;
         }
-    }
+
+		  //OSS:Enh:Force correct type instead of defaulting to SvgPolygon
+		 public override SvgElement DeepCopy() {
+			  return DeepCopy<SvgPolyline>();
+			  }
+
+		 //OSS:Enh:Force correct type instead of defaulting to SvgPolygon
+		 public override SvgElement DeepCopy<T>() {
+		  var newObj = base.DeepCopy<T>() as SvgPolyline;
+			  return newObj;
+			  }
+		 }
 }
