@@ -180,8 +180,7 @@ namespace Svg
         private IFontDefn GetFont(ISvgRenderer renderer, SvgElement owner)
         {
             if (owner == null) return null;
-
-            var visual = owner.ParentsAndSelf.OfType<SvgVisualElement>().FirstOrDefault();
+            var visual = owner.Parents.OfType<SvgVisualElement>().FirstOrDefault();
             return visual.GetFont(renderer);
         }
 

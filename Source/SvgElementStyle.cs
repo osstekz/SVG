@@ -67,7 +67,7 @@ namespace Svg
         [SvgAttribute("fill-opacity", true)]
         public virtual float FillOpacity
         {
-            get { return (float)(this.Attributes["fill-opacity"] ?? this.Opacity); }
+            get { return (float)(this.Attributes["fill-opacity"] ?? 1.0f); }
             set { this.Attributes["fill-opacity"] = FixOpacityValue(value); }
         }
 
@@ -122,7 +122,7 @@ namespace Svg
         [SvgAttribute("stroke-opacity", true)]
         public virtual float StrokeOpacity
         {
-            get { return (float)(this.Attributes["stroke-opacity"] ?? this.Opacity); }
+            get { return (float)(this.Attributes["stroke-opacity"] ?? 1.0f); }
             set { this.Attributes["stroke-opacity"] = FixOpacityValue(value); }
         }
 
